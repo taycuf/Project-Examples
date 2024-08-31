@@ -1,0 +1,46 @@
+import random
+
+def get_random_hex_digit():
+    """Generate a random integer between 0 and 15 inclusive."""
+    return random.randint(0, 15)
+
+def convert_decimal_to_hex(decimal_val):
+    """Convert a decimal value to its hexadecimal representation."""
+    return hex(decimal_val)[2:].upper()
+
+def generate_addition_problem():
+    """Generate a random addition problem in hexadecimal format."""
+    first_val = get_random_hex_digit()
+    second_val = get_random_hex_digit()
+
+    first_hex_val = convert_decimal_to_hex(first_val)
+    second_hex_val = convert_decimal_to_hex(second_val)
+    total = convert_decimal_to_hex(first_val + second_val)
+
+    return first_hex_val, second_hex_val, total
+
+def quiz_user():
+    """Quiz the user on adding two random hexadecimal digits."""
+    print("Welcome to the Hexadecimal Addition Quiz!")
+    print("Type '-' to exit at any time.\n")
+
+    while True:
+        first_hex_val, second_hex_val, correct_answer = generate_addition_problem()
+        addition_problem = f"{first_hex_val} + {second_hex_val} = "
+
+        user_input = input(addition_problem).strip().upper()
+
+        if user_input == "-":
+            print("Thank you for playing! Goodbye!")
+            break
+        elif user_input == correct_answer:
+            print(f"Yes! {addition_problem} {correct_answer}")
+        else:
+            print(f"No! The correct answer is {addition_problem} {correct_answer}")
+
+def main():
+    """Main function to run the quiz."""
+    quiz_user()
+
+if __name__ == "__main__":
+    main()
